@@ -1,0 +1,15 @@
+{
+	"name": "AzureProject-DataFact",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Enabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "0988b58c-b665-4a6c-b894-4cfced14d5e1",
+		"tenantId": "72755a1c-2f11-459f-be66-3be94671c567"
+	}
+}
