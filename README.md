@@ -1,4 +1,4 @@
-# 🚀 Enterprise Retail Analytics Data Platform
+# 🚀 Cloud-Based Data Engineering Platform
 
 ## 📌 Project Overview
 
