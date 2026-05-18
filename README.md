@@ -1,114 +1,235 @@
-**Cloud-Based Data Engineering Platform**
+# 🚀 Enterprise Retail Analytics Data Platform
 
-📌 **Overview**
+## 📌 Project Overview
 
-This project demonstrates an end-to-end data engineering pipeline built using Azure Databricks and Azure cloud services. The pipeline processes raw data from ADLS Gen2, applies transformations using PySpark, and stores curated data in Delta format following modern data engineering best practices.
+Designed and implemented a scalable cloud-native enterprise data platform using Azure Databricks, PySpark, Delta Lake, Azure Data Factory, and ADLS Gen2 to process and analyze large-scale business datasets.
 
-**The project includes:**
+The solution follows a modern Medallion Architecture (Bronze → Silver → Gold) to support incremental ingestion, streaming ETL processing, dimensional modeling, and business-ready analytical reporting.
 
-Auto Loader ingestion
-Structured Streaming
-PySpark transformations
-Delta Lake processing
-Medallion Architecture (Bronze → Silver → Gold)
-Checkpointing and schema evolution
-Reusable utility functions
-Unity Catalog integration
-This project demonstrates an end-to-end data engineering pipeline built using Azure Databricks and Azure cloud services. The pipeline processes raw data from ADLS Gen2, applies transformations using PySpark, and stores curated data in Delta format following modern data engineering best practices.
+The platform automates ingestion from multiple enterprise source systems, performs scalable PySpark transformations, applies Slowly Changing Dimension (SCD) logic, and delivers curated datasets optimized for downstream analytics and reporting workloads.
 
-**Architecture**
+This project demonstrates enterprise-level implementation patterns commonly used in modern cloud-based data engineering ecosystems.
 
-<img width="697" height="400" alt="image" src="https://github.com/user-attachments/assets/d283800b-20d8-414b-bdf3-a1131367f556" />
+---
 
-**⚙️ Technologies Used**
+# 🏗️ Solution Architecture
 
-<img width="951" height="505" alt="image" src="https://github.com/user-attachments/assets/651e719a-ec63-4e72-9f1d-20059e57d385" />
+```text
+Enterprise Source Systems
+          ↓
+Azure Data Factory Pipelines
+          ↓
+Azure Data Lake Storage Gen2
+          ↓
+Azure Databricks Auto Loader
+          ↓
+Bronze Layer (Raw Delta Tables)
+          ↓
+PySpark Streaming & Batch Transformations
+          ↓
+Silver Layer (Cleansed & Standardized Data)
+          ↓
+Business Rules / Aggregations / SCD Processing
+          ↓
+Gold Layer (Curated Analytical Data)
+          ↓
+Reporting & Analytics Consumption
+```
 
-**🔥 Features**
+---
 
-✅ Incremental file ingestion using Auto Loader
-✅ Schema evolution support
-✅ Rescued data handling
-✅ Streaming and batch processing
-✅ Delta Lake support
-✅ Scalable PySpark transformations
-✅ Reusable utility functions
-✅ Cloud-native architecture
-✅ Medallion architecture implementation
+# ⚙️ Technologies Used
 
-📥 **Data Ingestion**
-The project uses Databricks Auto Loader for efficient incremental file ingestion from ADLS Gen2.
+* Azure Databricks
+* PySpark
+* Delta Lake
+* Azure Data Factory
+* Azure Data Lake Storage Gen2
+* Structured Streaming
+* Databricks Auto Loader
+* Unity Catalog
+* Delta Live Tables (DLT)
+* GitHub
+* Databricks Asset Bundles
 
-Example:
-spark.readStream.format("cloudFiles") \
-    .option("cloudFiles.format", "parquet") \
-    .option("cloudFiles.schemaLocation", "<schema-path>") \
-    .load("<source-path>")
+---
 
-🔄 **Transformations**
+# 🔥 Key Features
 
-The pipeline performs transformations such as:
+* Incremental and streaming data ingestion using Auto Loader
+* Medallion Architecture implementation
+* Delta Lake processing with ACID transactions
+* Schema evolution and rescued data handling
+* Scalable PySpark-based ETL pipelines
+* Slowly Changing Dimension (SCD Type 2) implementation
+* Metadata-driven ingestion framework
+* Checkpointing and fault-tolerant streaming pipelines
+* Batch and streaming workload support
+* Centralized governance using Unity Catalog
+* Reusable and modular ETL framework design
 
-Column standardization
-Upper/lower case conversion
-Null handling
-Data cleansing
-Aggregations
-Schema enforcement
-Derived columns
+---
 
-Example:
-df = df.withColumn(
-    "user_name",
-    upper(col("user_name"))
-)
+# 📥 Data Ingestion
 
-💾 **Delta Lake Processing**
+Implemented scalable ingestion pipelines using Azure Data Factory and Databricks Auto Loader to process structured datasets incrementally from Azure Data Lake Storage.
 
-Processed data is stored in Delta format for:
+### Capabilities
 
-ACID transactions
-Time travel
-Scalable performance
-Schema evolution
-Reliable streaming
+* Incremental ingestion
+* Streaming ETL processing
+* Schema inference and evolution
+* File notification-based ingestion
+* Fault-tolerant checkpointing
+* Rescued data handling
 
-Example:
-df.writeStream.format("delta") \
-    .outputMode("append") \
-    .option("checkpointLocation", "<checkpoint-path>") \
-    .start("<target-path>")
+---
 
-📊 **Medallion Architecture**
+# 🔄 Data Transformation Layer
 
-**Bronze Layer**
-Stores raw ingested data.
+Implemented scalable PySpark transformation pipelines to standardize, cleanse, enrich, and curate datasets across Silver and Gold layers.
 
-**Silver Layer**
-Stores cleaned and transformed data.
+### Transformations Performed
 
-**Gold Layer**
-Stores business-ready aggregated data.
+* Column standardization
+* Data cleansing and validation
+* Null handling
+* Deduplication
+* Derived metrics creation
+* Aggregations and business rules
+* Incremental merge logic
+* SCD Type 2 processing
+* Schema enforcement
 
-🔐 **Unity Catalog**
+---
 
-This project can integrate with Unity Catalog for:
+# 🥉 Bronze Layer
 
-Centralized governance
-Fine-grained access control
-Data lineage
-Secure external locations
+The Bronze layer stores raw ingested data in Delta format with minimal transformation.
 
-📈 **Future Enhancements**
-CI/CD integration
-Databricks Asset Bundles
-Delta Live Tables (DLT)
-Monitoring dashboards
-Data quality framework
-Workflow automation
-CDC pipelines
+### Responsibilities
 
-👩‍💻 **Author**
+* Preserve raw source data
+* Maintain ingestion history
+* Support replayability
+* Enable incremental ingestion
 
-Pranathi
+---
+
+# 🥈 Silver Layer
+
+The Silver layer applies cleansing, standardization, business transformations, and schema enforcement.
+
+### Responsibilities
+
+* Curated analytical datasets
+* Cleaned business entities
+* Enriched dimensions
+* Standardized data models
+* Historical tracking using SCD
+
+---
+
+# 🥇 Gold Layer
+
+The Gold layer contains business-ready aggregated datasets optimized for reporting and analytics.
+
+### Responsibilities
+
+* KPI generation
+* Aggregated reporting datasets
+* Business-level metrics
+* Analytical consumption layer
+
+---
+
+# 📊 Delta Lake Implementation
+
+Delta Lake was used to support:
+
+* ACID transactions
+* Schema evolution
+* Time travel
+* Incremental processing
+* Reliable streaming workloads
+* Optimized reads and writes
+
+---
+
+# 🔐 Unity Catalog Integration
+
+Integrated Unity Catalog for centralized governance and secure data management.
+
+### Capabilities
+
+* Fine-grained access control
+* Centralized metadata management
+* Data lineage
+* External locations
+* Storage credentials
+* Cross-workspace governance
+
+---
+
+# ⚡ Delta Live Tables (DLT)
+
+Implemented declarative ETL pipelines using Delta Live Tables to simplify orchestration and improve pipeline reliability.
+
+### Features
+
+* Automated dependency management
+* Incremental processing
+* Built-in monitoring
+* Data quality expectations
+* Simplified streaming pipelines
+
+---
+
+# 📈 Enterprise Data Engineering Concepts Implemented
+
+* Medallion Architecture
+* Incremental Data Loading
+* Streaming ETL Pipelines
+* Metadata-Driven Frameworks
+* Slowly Changing Dimensions (SCD)
+* Change Data Processing
+* Delta Lake Optimization
+* Reusable Framework Design
+* Checkpointing & Fault Tolerance
+* Schema Evolution
+* Modular ETL Design
+
+---
+
+# 🛠️ CI/CD & Deployment
+
+Implemented source-controlled development workflows using:
+
+* GitHub integration
+* Databricks Repos
+* Databricks Asset Bundles
+* Environment-based deployment patterns
+
+### Deployment Environments
+
+* Development
+* QA
+* Production
+
+---
+
+# 📌 Business Outcomes
+
+* Improved scalability of data ingestion pipelines
+* Reduced manual operational effort through automation
+* Enabled reliable incremental data processing
+* Built reusable and modular ETL components
+* Improved analytical readiness of datasets
+* Supported near real-time data processing workflows
+
+---
+
+# 👩‍💻 Author
+
+**Pranathi**
 Data Engineer | PySpark | Azure Databricks | Azure Data Factory | Delta Lake | Streaming ETL
